@@ -1,0 +1,25 @@
+.hovered {
+  width: 100%;
+  padding: 0 10px;
+  padding-bottom: 20px;
+  background-color:  #141414;
+
+}
+
+.hovered p {
+  font-size: small;
+  color: white;
+}
+
+.actions {
+  width: 100%;
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+.action {
+  width: 50%;
+  display: flex;
+  align-items: center;
+}
