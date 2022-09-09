@@ -9,7 +9,10 @@ import Tooltip, { TooltipProps, tooltipClasses } from '@mui/material/Tooltip';
 import ThumbUpIcon from '@mui/icons-material/ThumbUpOutlined';
 import styles from './hovered-video-item.module.css';
 
-export const HoveredVideoItem: React.FC<{ video: Movie }> = ({ video }) => {
+export const HoveredVideoItem: React.FC<{
+  video: Movie;
+  onClickMoreInfo: () => void;
+}> = ({ video, onClickMoreInfo }) => {
   const StyledTooltip = styled(({ className, ...props }: TooltipProps) => (
     <Tooltip {...props} arrow classes={{ popper: className }} />
   ))(({ theme }) => ({
@@ -45,7 +48,7 @@ export const HoveredVideoItem: React.FC<{ video: Movie }> = ({ video }) => {
           </IconButton>
         </div>
         <div>
-          <IconButton sx={{ margin: 0 }}>
+          <IconButton sx={{ margin: 0 }} onClick={onClickMoreInfo}>
             <StyledTooltip title="More Info" placement={'top'}>
               <ArrowDownIcon
                 sx={{

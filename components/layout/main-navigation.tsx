@@ -3,8 +3,9 @@ import Link from 'next/link';
 import styles from './main-navigation.module.css';
 import Image from 'next/image';
 import Notifications from '@mui/icons-material/Notifications';
-import { Badge, Tooltip } from '@mui/material';
+import { Badge } from '@mui/material';
 import { SearchBar } from '../ui/search-bar';
+import { Submenu } from './submenu';
 
 export const MainNavigation: React.FC = () => {
   return (
@@ -47,7 +48,7 @@ export const MainNavigation: React.FC = () => {
         <Link href={'/kids'} style={{ padding: 30 }}>
           Kids
         </Link>
-        <Tooltip title="Notifications">
+        <div className={styles['nav-item']}>
           <Badge badgeContent={2} color="error">
             <Notifications
               className={styles.icons}
@@ -55,7 +56,8 @@ export const MainNavigation: React.FC = () => {
               style={{ marginLeft: 20 }}
             />
           </Badge>
-        </Tooltip>
+          <Submenu className={styles.submenu} />
+        </div>
       </section>
     </header>
   );

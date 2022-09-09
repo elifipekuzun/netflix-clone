@@ -4,9 +4,9 @@
 
 .stack {
   display: flex;
-  overflow-x: scroll;
   padding: 40px 15px 40px 15px;
-  scroll-behavior: smooth;
+  transition: 0.4s ease-out;
+
 }
 
 .stack::-webkit-scrollbar {

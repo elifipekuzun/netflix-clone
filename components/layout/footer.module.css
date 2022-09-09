@@ -1,0 +1,11 @@
+.footer ul {
+  padding: 60px 150px;
+  display: flex;
+  align-items: center;
+  width: 35%;
+  justify-content: space-between;
+  
+}
+.footer ul li {
+  list-style: none;
+}

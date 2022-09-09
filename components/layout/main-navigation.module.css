@@ -5,6 +5,10 @@
   align-items: center;
   justify-content: space-between;
   padding: 3% 5%;
+  position: fixed;
+  background: #141414;
+  top: 0;
+  z-index: 1001;
 }
 .navLeft {
   display: flex;
@@ -45,6 +49,14 @@
 
 .icons:hover {
   opacity: 0.7;
+}
+.nav-item .submenu {
+  display: none;
+}
+.nav-item:hover .submenu {
+  display: block;
+  position: absolute;
+  
 }
 
 @media (min-width: 768px) {

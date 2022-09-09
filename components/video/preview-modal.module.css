@@ -1,0 +1,51 @@
+.player-image {
+  position: relative;
+}
+.player-image img {
+  width: 100%;
+  object-fit: contain;
+}
+
+.title-icons {
+  width: 100%;
+  bottom: 80px;
+  margin: 0 20px;
+  position: absolute;
+}
+.icons {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  width: 100%;
+}
+.icon {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 40%;
+
+}
+.button {
+  background-color: white;
+  color: #141414;
+  border-radius: 40px;
+  width: 40px;
+  height: 40px;
+  align-items: center;
+  border: none;
+}
+.button.volume {
+  margin-right: 20px;
+}
+.button.close {
+  position: absolute;
+  right: 30px;
+  background: #141414;
+  top: 20px;
+}
+.content {
+  display: flex;
+  color: rgb(175, 175, 175);
+  opacity: 0.7;
+}
