@@ -1,14 +1,18 @@
 .header {
   width: 100%;
-  height: 3rem;
+  height: 60px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 3% 5%;
+  padding: 0 5%;
   position: fixed;
   background: #141414;
   top: 0;
-  z-index: 1001;
+  z-index: 10;
+  transition: 0.3s ease-out;
+}
+.header.transparant {
+  background-color: transparent;
 }
 .navLeft {
   display: flex;
@@ -28,6 +32,7 @@
   align-items: baseline;
   margin: 0;
   padding: 0;
+  gap: 1rem;
 }
 
 .header li {
@@ -56,15 +61,82 @@
 .nav-item:hover .submenu {
   display: block;
   position: absolute;
+  margin-top: 1.5%;
   
 }
 
-@media (min-width: 768px) {
+.submenu {
+  right: 5%;
+  background-color: rgba(20, 20, 20, 0.8);
+  border-top: 1px solid rgb(255, 255, 255);
+  border-left: 0.02px solid rgba(255, 255, 255, 0.5);
+  border-right: 0.2px solid rgba(255, 255, 255, 0.5);
+  border-bottom: 0.2px solid rgba(255, 255, 255, 0.5);
+  border-radius: 2px;
+}
+.submenu a {
+  display: flex;
+  padding: 20px 15px;
+  align-items: center;
+  justify-content: space-between;
+  text-align: center;
+}
+.submenu li{
+  padding: 5px 10px;
+}
+.submenu img {
+  max-height: 70px;
+  margin-right: 20px;
+}
+.browse {
+  display: none;
+}
+.browse-submenu {
+  display: none;
+  position: absolute;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(20, 20, 20, 0.95);
+  border-top: 1px solid rgb(255, 255, 255);
+  border-left: 0.02px solid rgba(255, 255, 255, 0.5);
+  border-right: 0.2px solid rgba(255, 255, 255, 0.5);
+  border-bottom: 0.2px solid rgba(255, 255, 255, 0.5);
+  border-radius: 2px;
+}
+.browse-submenu a {
+  display: block;
+  padding: 20px 15px;
+  align-items: center;
+  text-align: center;
+  max-width: 300px;
+}
+.browse-submenu {
+  display: none;
+}
+.browse:hover .browse-submenu {
+  display: block;
+}
+.browse-submenu:hover .browse-submenu {
+  display: block;
+}
+
+.submenu hr {
+  border-width: 0.2px;
+  opacity: 0.5;
+
+}
+
+@media (max-width: 820px) {
   .header ul {
     gap: 0.5rem;
+    display: none;
   }
 
   .header a {
     font-size: var(--size-5);
+  }
+  .browse {
+    display: block;
+    font-weight: normal;
   }
 }

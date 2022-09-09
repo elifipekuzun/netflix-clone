@@ -1,0 +1,23 @@
+.billboard-row {
+  background-color: #000;
+  margin-bottom: 20px;
+  padding-bottom: 40%;
+  position: relative;
+}
+
+.billboard-row.billboard {
+  background-color: #000;
+  height: 56.25vw;
+  position: absolute;
+  width: 100%;
+  z-index: 0;
+}
+.fill-container {
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+}

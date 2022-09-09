@@ -23,11 +23,18 @@ export const VideoSlider: React.FC<{ videos: Movie[]; genre: string }> = ({
 
   const scrollLeftHandler = () => {
     if (scrollRef.current) {
-      const scrollWidth = scrollRef.current.clientWidth;
       const screenWidth = window.innerWidth;
-      if (marginLeft + screenWidth < scrollWidth && marginLeft > 0) {
-        const scrollNum = scrollWidth - (marginLeft + screenWidth);
-        setMarginLeft(marginLeft - scrollNum);
+      if (marginLeft > 0) {
+        if (
+          marginLeft + screenWidth >= screenWidth &&
+          marginLeft >= screenWidth
+        ) {
+          setMarginLeft(marginLeft - screenWidth);
+        } else {
+          setMarginLeft(0);
+        }
+      } else {
+        setMarginLeft(0);
       }
     }
   };
@@ -36,8 +43,14 @@ export const VideoSlider: React.FC<{ videos: Movie[]; genre: string }> = ({
       const scrollWidth = scrollRef.current.clientWidth;
       const screenWidth = window.innerWidth;
       if (marginLeft + screenWidth < scrollWidth) {
-        const scrollNum = scrollWidth - (marginLeft + screenWidth);
-        setMarginLeft(marginLeft + scrollNum);
+        if (scrollWidth - (marginLeft + screenWidth) > screenWidth) {
+          const scrollNum = marginLeft + screenWidth;
+          setMarginLeft(scrollNum);
+        } else {
+          setMarginLeft(
+            marginLeft + (scrollWidth - (marginLeft + screenWidth))
+          );
+        }
       } else {
         setMarginLeft(0);
       }
@@ -45,23 +58,25 @@ export const VideoSlider: React.FC<{ videos: Movie[]; genre: string }> = ({
   };
 
   return (
-    <div className={styles.slider}>
-      <h3>{genre}</h3>
-      <ArrowSlider
-        onScrollLeft={scrollLeftHandler}
-        onScrollRight={scrollRightHandler}
-        marginLeftValue={marginLeft}
-      >
-        <div
-          className={styles.stack}
-          ref={scrollRef}
-          style={{ marginLeft: -marginLeft }}
+    <>
+      <div className={styles.slider}>
+        <ArrowSlider
+          genre={genre}
+          onScrollLeft={scrollLeftHandler}
+          onScrollRight={scrollRightHandler}
+          marginLeftValue={marginLeft}
         >
-          {videos.map((video, i) => {
-            return <VideoItem video={video} key={i} />;
-          })}
-        </div>
-      </ArrowSlider>
-    </div>
+          <div
+            className={styles.stack}
+            ref={scrollRef}
+            style={{ marginLeft: -marginLeft }}
+          >
+            {videos.map((video, i) => {
+              return <VideoItem video={video} key={video._id + '-' + i} />;
+            })}
+          </div>
+        </ArrowSlider>
+      </div>
+    </>
   );
 };

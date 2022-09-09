@@ -1,36 +1,28 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styles from './preview-modal.module.css';
-import Button from '@mui/material/Button';
 import VolumeIcon from '@mui/icons-material/VolumeUp';
 import AddIcon from '@mui/icons-material/Add';
 import Tumbup from '@mui/icons-material/ThumbUp';
 import CloseIcon from '@mui/icons-material/Close';
-import { Fade, Box, Typography } from '@mui/material';
+import { Fade, Typography } from '@mui/material';
 import Backdrop from '@mui/material/Backdrop';
 import { Movie } from '../../types/Movie';
 import Modal from '@mui/material/Modal';
 import classNames from 'classnames';
+import PlayArrowRounded from '@mui/icons-material/PlayArrowRounded';
+import { PlayButton } from '../ui/play-button';
 
 export const PreviewModal: React.FC<{
   video: Movie;
   isModalVisible: boolean;
   closeRequest: () => void;
-}> = ({ video, isModalVisible, closeRequest }) => {
-  const style = {
-    position: 'absolute' as 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    width: 850,
-    display: 'block',
-    alignItems: 'center',
-    bgcolor: '#141414',
-    boxShadow: 24,
-    p: 4,
-  };
+  onBackdropClick: () => void;
+}> = ({ video, isModalVisible, closeRequest, onBackdropClick }) => {
   return (
     <Modal
+      sx={{ height: '100%', overflow: 'scroll' }}
       open={isModalVisible}
+      onClose={onBackdropClick}
       aria-labelledby="transition-modal-title"
       aria-describedby="transition-modal-description"
       closeAfterTransition
@@ -40,11 +32,11 @@ export const PreviewModal: React.FC<{
       }}
     >
       <Fade in={isModalVisible}>
-        <Box sx={style}>
+        <div className={styles.box}>
           <div className={styles['player-image']}>
             <img
               src={
-                'https://occ-0-3467-2773.1.nflxso.net/dnm/api/v6/E8vDc_W8CLv7-yMQu8KMEC7Rrr8/AAAABcIrX2arGSK_A1KR2buSiR1kd9G3Ja6XveENAThuTxVr3i-JTKQ8WD0zuu72OyUP_maVUP16bR6YzUYP-_SfbZYwxDLH9ArxAaD5.webp?r=9d3'
+                'https://occ-0-3467-2773.1.nflxso.net/dnm/api/v6/E8vDc_W8CLv7-yMQu8KMEC7Rrr8/AAAABQv2TDBhz9WgoeoiqCU2b-xx468Boh-g5y65nQuRXBZZQQwRy2gmHErE-2bjfg_pCLg-otJLAxu7ar9QU8X2vg2EKEv9FhNUyDhP.webp?r=14f'
               }
               alt={video.title}
             />
@@ -59,22 +51,14 @@ export const PreviewModal: React.FC<{
               </Typography>
               <div className={styles.icons}>
                 <div className={styles.icon}>
-                  <Button
-                    variant={'contained'}
-                    sx={{
-                      bgcolor: 'white',
-                      color: '#141414',
-                      width: '50%',
-                      my: 2,
-                    }}
-                  >
-                    Play
-                  </Button>
+                  <PlayButton title="Play" bgColor="white">
+                    <PlayArrowRounded sx={{ fontSize: 28 }} />
+                  </PlayButton>
                   <button className={styles.button}>
                     <AddIcon />
                   </button>
                   <button className={styles.button}>
-                    <Tumbup sx={{ color: 'gray' }} />
+                    <Tumbup />
                   </button>
                 </div>
                 <div>
@@ -99,7 +83,7 @@ export const PreviewModal: React.FC<{
               Actors: {video.actor}
             </Typography>
           </div>
-        </Box>
+        </div>
       </Fade>
     </Modal>
   );

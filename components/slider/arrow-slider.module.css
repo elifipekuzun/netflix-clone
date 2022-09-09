@@ -1,3 +1,7 @@
+.arrow-header {
+  z-index: 10;
+  border-radius: 1px solid;
+}
 .arrows {
   display: flex;
   align-items: center;
@@ -8,7 +12,7 @@
 .arrows:hover .arrow-left,
 .arrows:hover .arrow-right{
   opacity: 1;
-  z-index: 1000;
+  z-index: 10;
 }
 .arrow-left {
   width: 40px;
@@ -19,7 +23,7 @@
   align-items: center;
   justify-content: center;
   opacity: 0;
-  transition: opacity 0.3s ease-out ;
+  transition:  0.3s ease-out ;
   background: hsla(0,0%,8%,.7);
 }
 
@@ -36,6 +40,8 @@
   justify-content: 'center';
   background: hsla(0,0%,8%,.7);
   opacity: 0;
-  transition: opacity 0.3s ease-out ;
-  padding-top: 70px;
+  transition: 0.3s ease-out ;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

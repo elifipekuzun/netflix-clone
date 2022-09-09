@@ -1,17 +1,17 @@
-import React from 'react';
+import React, { PropsWithChildren } from 'react';
+import styles from './submenu.module.css';
 
-export const Submenu: React.FC<{ className: string }> = ({ className }) => {
+export const Submenu: React.FC<PropsWithChildren<{ className: string }>> = ({
+  className,
+  children,
+}) => {
   return (
-    <ul className={className}>
-      <li>
-        <a>Notification 1</a>
-      </li>
-      <li>
-        <a>Notification 2</a>
-      </li>
-      <li>
-        <a>Notification 3</a>
-      </li>
-    </ul>
+    <div className={styles.container}>
+      <ul className={className}>
+        <li>
+          <div>{children}</div>
+        </li>
+      </ul>
+    </div>
   );
 };

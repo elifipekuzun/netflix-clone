@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import styles from './main-navigation.module.css';
 import Image from 'next/image';
@@ -6,10 +6,28 @@ import Notifications from '@mui/icons-material/Notifications';
 import { Badge } from '@mui/material';
 import { SearchBar } from '../ui/search-bar';
 import { Submenu } from './submenu';
+import { Avatar } from '@mui/material';
+import classNames from 'classnames';
 
 export const MainNavigation: React.FC = () => {
+  const [pos, setPos] = useState<number>(0);
+
+  const scrollHandler = () => {
+    const position = window.scrollY;
+    setPos(position);
+  };
+
+  useEffect(() => {
+    window.addEventListener('scroll', scrollHandler);
+    return () => {
+      window.removeEventListener('scroll', scrollHandler);
+    };
+  }, []);
+
   return (
-    <header className={styles.header}>
+    <header
+      className={classNames(styles.header, pos === 0 ? styles.transparant : '')}
+    >
       <section className={styles.navLeft}>
         <Link href={'/browse'}>
           <a className={styles.logo}>
@@ -22,6 +40,18 @@ export const MainNavigation: React.FC = () => {
           </a>
         </Link>
         <nav>
+          <div className={styles.browse}>
+            <a>Browse</a>
+            <Submenu className={styles['browse-submenu']}>
+              <>
+                <a href={'#'}>Home</a>
+                <a href={'#'}>Tv Series</a>
+                <a href={'#'}>Movies</a>
+                <a href={'#'}>Latest</a>
+                <a href={'#'}>My List</a>
+              </>
+            </Submenu>
+          </div>
           <ul>
             <li>
               <Link href={'/browse/genre/home'}>Home</Link>
@@ -56,8 +86,21 @@ export const MainNavigation: React.FC = () => {
               style={{ marginLeft: 20 }}
             />
           </Badge>
-          <Submenu className={styles.submenu} />
+          <Submenu className={styles.submenu}>
+            <a>
+              <img
+                src={
+                  'https://occ-0-3467-2773.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABWCvNzpWS68Mi_I6Rh8VjsTGYm_tc3oLgLIKfYE4lfLzSZli4um-JzzLBxQQxKHFUitghRFsPIqmgcLVEOOt3D86JS3JjE0KsMfTOPNYvpFSHdjDWC-GyK8whZ_PjvLKS8_N.jpg?r=199'
+                }
+                alt="notification"
+              />
+              <h4>Now streaming season 3.</h4>
+            </a>
+          </Submenu>
         </div>
+        <Link href={'#'}>
+          <Avatar sx={{ marginLeft: 5 }} />
+        </Link>
       </section>
     </header>
   );

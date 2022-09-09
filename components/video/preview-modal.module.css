@@ -1,3 +1,20 @@
+.box {
+  margin: 50px 0px 50px 0px;
+  padding-bottom: 50px;
+  position: absolute;
+  border-radius: 5px;
+  overflow: hidden;
+  top: 50%;
+  left: 50%;
+  height: 100%;
+  transform: translate(-50%, -50%);
+  width: 850px;
+  display: block;
+  align-items: center;
+  background: #141414;
+  box-shadow: 24px;
+ 
+}
 .player-image {
   position: relative;
 }
@@ -27,11 +44,11 @@
 
 }
 .button {
-  background-color: white;
-  color: #141414;
+  background-color: rgba(20, 20, 20);
+  color: gray;
   border-radius: 40px;
-  width: 40px;
-  height: 40px;
+  width: 50px;
+  height: 50px;
   align-items: center;
   border: none;
 }
@@ -48,4 +65,5 @@
   display: flex;
   color: rgb(175, 175, 175);
   opacity: 0.7;
+  padding: 40px;
 }

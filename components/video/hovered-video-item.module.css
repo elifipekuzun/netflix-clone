@@ -1,8 +1,9 @@
 .hovered {
+  margin: 0;
   width: 100%;
-  padding: 0 10px;
-  padding-bottom: 20px;
-  background-color:  #141414;
+  padding: 0 10px 20px 10px;
+  position: absolute;
+  background-color: #141414;
 
 }
 

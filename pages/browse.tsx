@@ -2,10 +2,12 @@ import { NextPage, GetStaticProps } from 'next';
 import { VideoSlider } from '../components/slider/video-slider';
 import { Movie } from '../types/Movie';
 import { MongoClient } from 'mongodb';
+import { BillboardRow } from '../components/billboard/billboard-row';
 
 const BrowsePage: NextPage<{ videos: Movie[] | undefined }> = ({ videos }) => {
   return (
     <>
+      <BillboardRow />
       {videos && <VideoSlider videos={videos} genre={'Comedies'} />}
       {videos && <VideoSlider videos={videos} genre={'Actions'} />}
       {videos && <VideoSlider videos={videos} genre={'Dramas'} />}
@@ -38,7 +40,17 @@ export const getStaticProps: GetStaticProps<{
   if (!videos) {
     return { notFound: true };
   }
-  videos = [...videos, videos[0], videos[1]];
+  videos = [
+    ...videos,
+    videos[0],
+    videos[1],
+    videos[2],
+    videos[3],
+    videos[0],
+    videos[1],
+    videos[2],
+    videos[3],
+  ];
 
   return {
     props: {

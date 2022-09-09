@@ -38,6 +38,9 @@ export const VideoItem: React.FC<{ video: Movie }> = ({ video }) => {
           )}
         </div>
         <PreviewModal
+          onBackdropClick={() => {
+            setModalClicked(false);
+          }}
           isModalVisible={modalClicked}
           video={video}
           closeRequest={() => setModalClicked(false)}
