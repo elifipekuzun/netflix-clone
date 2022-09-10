@@ -1,0 +1,12 @@
+.page {
+  width: 15px;
+  height: 2px;
+  background-color: rgb(151, 146, 146);
+  margin-right: 4%;
+  opacity: 0.6;
+}
+
+.page.active {
+  background-color: rgb(196, 195, 195);
+  opacity: 1;
+}

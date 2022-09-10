@@ -9,6 +9,8 @@ import { SliderHeader } from './slider-header';
 type ArrowSliderProps = {
   marginLeftValue: number;
   genre: string;
+  activePage: number;
+  paginationNumber: number;
   onScrollLeft: () => void;
   onScrollRight: () => void;
 };
@@ -16,6 +18,8 @@ type ArrowSliderProps = {
 export const ArrowSlider: React.FC<PropsWithChildren<ArrowSliderProps>> = ({
   children,
   genre,
+  activePage,
+  paginationNumber,
   onScrollLeft,
   onScrollRight,
   marginLeftValue,
@@ -27,7 +31,12 @@ export const ArrowSlider: React.FC<PropsWithChildren<ArrowSliderProps>> = ({
 
   return (
     <div className={styles['arrow-header']}>
-      <SliderHeader genre={genre} />
+      <SliderHeader
+        genre={genre}
+        activePage={activePage}
+        paginationNumber={paginationNumber}
+        paginationClass={styles.pagination}
+      />
       <div className={styles.arrows}>
         <div className={classesLeft}>
           <IconButton onClick={onScrollLeft}>

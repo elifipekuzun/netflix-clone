@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Movie } from '../../types/Movie';
 import { VideoItem } from '../video/video-item';
 import styles from './video-slider.module.css';
@@ -10,16 +10,8 @@ export const VideoSlider: React.FC<{ videos: Movie[]; genre: string }> = ({
 }) => {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [marginLeft, setMarginLeft] = useState<number>(0);
-
-  // let genreVideos = videos.filter((video) => video.genre === genre);
-  // genreVideos = [
-  //   ...genreVideos,
-  //   genreVideos[0],
-  //   genreVideos[0],
-  //   genreVideos[0],
-  //   genreVideos[0],
-  //   genreVideos[0],
-  // ];
+  const [pageNumber, setPageNumber] = useState<number>(0);
+  const [activePage, setActivePage] = useState<number>(0);
 
   const scrollLeftHandler = () => {
     if (scrollRef.current) {
@@ -30,11 +22,14 @@ export const VideoSlider: React.FC<{ videos: Movie[]; genre: string }> = ({
           marginLeft >= screenWidth
         ) {
           setMarginLeft(marginLeft - screenWidth);
+          setActivePage(activePage - 1);
         } else {
           setMarginLeft(0);
+          setActivePage(activePage - 1);
         }
       } else {
         setMarginLeft(0);
+        setActivePage(0);
       }
     }
   };
@@ -46,25 +41,39 @@ export const VideoSlider: React.FC<{ videos: Movie[]; genre: string }> = ({
         if (scrollWidth - (marginLeft + screenWidth) > screenWidth) {
           const scrollNum = marginLeft + screenWidth;
           setMarginLeft(scrollNum);
+          setActivePage(activePage + 1);
         } else {
           setMarginLeft(
             marginLeft + (scrollWidth - (marginLeft + screenWidth))
           );
+          setActivePage(activePage + 1);
         }
       } else {
         setMarginLeft(0);
+        setActivePage(0);
       }
     }
   };
+
+  useEffect(() => {
+    if (scrollRef.current) {
+      const pageNumber = Math.ceil(
+        scrollRef.current.clientWidth / window.innerWidth
+      );
+      setPageNumber(pageNumber);
+    }
+  }, [scrollRef]);
 
   return (
     <>
       <div className={styles.slider}>
         <ArrowSlider
+          paginationNumber={pageNumber}
           genre={genre}
           onScrollLeft={scrollLeftHandler}
           onScrollRight={scrollRightHandler}
           marginLeftValue={marginLeft}
+          activePage={activePage}
         >
           <div
             className={styles.stack}

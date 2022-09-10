@@ -10,9 +10,10 @@
 }
 
 .arrows:hover .arrow-left,
-.arrows:hover .arrow-right{
+.arrows:hover .arrow-right {
   opacity: 1;
   z-index: 10;
+
 }
 .arrow-left {
   width: 40px;
@@ -44,4 +45,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+.pagination {
+  display: none;
+}
+
+.arrow-header:hover .pagination {
+  display: flex;
+  z-index: 10;
 }

@@ -1,0 +1,25 @@
+.loginHeader {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  border-bottom: transparent;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0) 100%);
+}
+
+.logo {
+  text-decoration: none;
+  vertical-align: middle;
+  fill: #E50914;
+  display: inline-block;
+  line-height: 90px;
+  margin-left: 3%;
+  margin-top: 10px
+}
+
+.logo img {
+  height: 45px;
+  width: 167px;
+  vertical-align: middle;
+  overflow: hidden;
+}

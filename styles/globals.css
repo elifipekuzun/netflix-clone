@@ -29,6 +29,9 @@ h2,
 h3 {
   font-family: 'Oswald', 'Roboto', sans-serif;
 }
+h1.center {
+  text-align: center;
+}
 
 @media (prefers-color-scheme: dark) {
   html {
