@@ -1,0 +1,70 @@
+.header {
+  top: 0px;
+  position: relative;
+  background: transparent;
+  left: 0;
+  right: 0;
+  z-index: 1;
+}
+
+.logo-container {
+  align-items: center;
+  height: 41px;
+  display: flex;
+  font-size: 1.2rem;
+  padding: 0 4%;
+  position: relative;
+  transition: background-color .4s;
+  z-index: 2;
+  margin-top: 5px;
+  background-image: linear-gradient(180deg,rgba(0,0,0,.7) 10%,transparent);
+}
+
+
+.logo-container img {
+  display: inline-block;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+.profiles-gate-container {
+  background: #141414;
+  bottom: 0;
+  left: 0;
+  position: fixed;
+  right: 0;
+  text-align: center;
+  top: 0;
+  z-index: 0;
+}
+.centered-profiles-container {
+  animation-duration: 0.45s;
+  animation-timing-function: ease;
+  animation-delay: 0s;
+  animation-iteration-count: 1;
+  animation-direction: normal;
+  animation-fill-mode: forwards;
+  animation-play-state: running;
+  animation-name: animateProfileGate;
+  align-items: center;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 100;
+}
+
+@keyframes animateProfileGate {
+  0% {
+    opacity: 0;
+    transform: scale(1.1);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
