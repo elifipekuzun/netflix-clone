@@ -1,15 +1,15 @@
 import { NextPage, GetServerSideProps } from 'next';
 import { useContext, useEffect } from 'react';
-import { VideoSlider } from '../components/slider/video-slider';
-import { Movie } from '../types/Movie';
-import { BillboardRow } from '../components/billboard/billboard-row';
-import { getClient } from '../lib/db';
-import { Layout } from '../components/layout/layout';
+import { VideoSlider } from '../../components/slider/video-slider';
+import { Movie } from '../../types/Movie';
+import { BillboardRow } from '../../components/billboard/billboard-row';
+import { getClient } from '../../lib/db';
+import { Layout } from '../../components/layout/layout';
 import { getSession } from 'next-auth/react';
 import { useSession } from 'next-auth/react';
-import { ProfileGateList } from '../components/profile-gate-list/profile-gate-list';
-import { UserContext } from '../store/user-context';
-import { User } from '../types/User';
+import { ProfileGateList } from '../../components/profile-gate-list/profile-gate-list';
+import { UserContext } from '../../store/user-context';
+import { User } from '../../types/User';
 
 const BrowsePage: NextPage<{ videos: Movie[] | undefined; user: User }> = ({
   videos,

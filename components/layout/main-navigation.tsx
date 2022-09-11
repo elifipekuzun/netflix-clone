@@ -76,7 +76,7 @@ export const MainNavigation: React.FC = () => {
               <Link href={'/browse/latest'}>Latest</Link>
             </li>
             <li>
-              <Link href={'/browse/genre/my-list'}>My List</Link>
+              <Link href={'/browse/my-list'}>My List</Link>
             </li>
           </ul>
         </nav>

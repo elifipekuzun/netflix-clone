@@ -1,45 +1,46 @@
 import React, { PropsWithChildren, useState } from 'react';
 import { User, UserProfile } from '../types/User';
+import { Movie } from '../types/Movie';
 
 type UserContextProps = {
   user: User | undefined;
   selectedProfile: UserProfile | undefined;
   setUser: (userInfo: User | undefined) => void;
-  getUser: () => User | undefined;
   setSelectedProfile: (profile: UserProfile | undefined) => void;
-  getSelectedProfile: () => UserProfile | undefined;
+  myList: Movie[];
+  addToList: (movie: Movie) => void;
+  removeFromList: (movieId: string) => void;
 };
 
 export const UserContext = React.createContext<UserContextProps>({
   user: undefined,
   selectedProfile: undefined,
   setUser(userInfo: User | undefined) {},
-  getUser() {
-    return this.user;
-  },
   setSelectedProfile(profile: UserProfile | undefined) {},
-  getSelectedProfile() {
-    return this.selectedProfile;
-  },
+  myList: [],
+  addToList(movie: Movie) {},
+  removeFromList(movieId) {},
 });
 export const UserProvider: React.FC<PropsWithChildren> = ({ children }) => {
   const [userInfo, setUserInfo] = useState<User>();
   const [selectedProfile, setProfile] = useState<UserProfile>();
+  const [userList, setUserList] = useState<Movie[]>([]);
 
   const setUser = (user: User | undefined) => {
     setUserInfo(user);
-  };
-
-  const getUser = (): User | undefined => {
-    return userInfo;
   };
 
   const setSelectedProfile = (profile: UserProfile | undefined) => {
     setProfile(profile);
   };
 
-  const getSelectedProfile = () => {
-    return selectedProfile;
+  const addToList = (movie: Movie) => {
+    setUserList([...userList, movie]);
+  };
+
+  const removeFromList = (movieId: string) => {
+    const updatedList = userList.filter((movie) => movie._id !== movieId);
+    setUserList(updatedList);
   };
 
   return (
@@ -47,10 +48,11 @@ export const UserProvider: React.FC<PropsWithChildren> = ({ children }) => {
       value={{
         user: userInfo,
         setUser,
-        getUser,
         selectedProfile,
-        getSelectedProfile,
         setSelectedProfile,
+        addToList,
+        removeFromList,
+        myList: userList,
       }}
     >
       {children}

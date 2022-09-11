@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Movie } from '../../types/Movie';
 import PlayIcon from '@mui/icons-material/PlayCircle';
 import ArrowDownIcon from '@mui/icons-material/ArrowDropDownCircle';
@@ -8,11 +8,14 @@ import IconButton from '@mui/material/IconButton';
 import Tooltip, { TooltipProps, tooltipClasses } from '@mui/material/Tooltip';
 import ThumbUpIcon from '@mui/icons-material/ThumbUpOutlined';
 import styles from './hovered-video-item.module.css';
+import { UserContext } from '../../store/user-context';
 
 export const HoveredVideoItem: React.FC<{
   video: Movie;
   onClickMoreInfo: () => void;
 }> = ({ video, onClickMoreInfo }) => {
+  const { addToList } = useContext(UserContext);
+
   const StyledTooltip = styled(({ className, ...props }: TooltipProps) => (
     <Tooltip {...props} arrow classes={{ popper: className }} />
   ))(({ theme }) => ({
@@ -33,7 +36,10 @@ export const HoveredVideoItem: React.FC<{
           <IconButton sx={{ margin: 0, paddingLeft: 1 }}>
             <PlayIcon sx={{ color: 'white', fontSize: 32 }} />
           </IconButton>
-          <IconButton sx={{ margin: 0, padding: 0 }}>
+          <IconButton
+            sx={{ margin: 0, padding: 0 }}
+            onClick={() => addToList(video)}
+          >
             <AddIcon sx={{ color: 'white', fontSize: 30, opacity: 0.7 }} />
           </IconButton>
           <IconButton sx={{ margin: 0, paddingLeft: 1 }}>
