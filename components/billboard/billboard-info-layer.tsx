@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './billboard-info-layer.module.css';
 import { PlayButton } from '../ui/play-button';
 import { PlayArrowRounded, InfoOutlined } from '@mui/icons-material';
 import Chair from '@mui/icons-material/Chair';
+import { PreviewModal } from '../video/preview-modal';
+import { Movie } from '../../types/Movie';
 
-export const InfoLayer: React.FC = () => {
+export const InfoLayer: React.FC<{ video: Movie }> = ({ video }) => {
+  const [isModalVisible, setIsModalVisible] = useState<boolean>(false);
+
   return (
     <div className={styles['info-layer']}>
       <div className={styles['logo-and-text']}>
@@ -23,10 +27,19 @@ export const InfoLayer: React.FC = () => {
           </span>
         </div>
         <div className={styles.actions}>
-          <PlayButton className={styles.button1} title="Play" bgColor="white">
+          <PlayButton
+            onClick={() => {}}
+            className={styles.button1}
+            title="Play"
+            bgColor="white"
+          >
             <PlayArrowRounded sx={{ fontSize: 28 }} />
           </PlayButton>
-          <PlayButton title="More Info" bgColor="rgba(109, 109, 110, 0.7)">
+          <PlayButton
+            onClick={() => setIsModalVisible(true)}
+            title="More Info"
+            bgColor="rgba(109, 109, 110, 0.7)"
+          >
             <InfoOutlined
               sx={{ fontSize: 28, color: 'white', fontWeight: '100' }}
             />
@@ -47,6 +60,14 @@ export const InfoLayer: React.FC = () => {
           </div>
         </div>
       </div>
+      {isModalVisible && (
+        <PreviewModal
+          closeRequest={() => setIsModalVisible(false)}
+          isModalVisible={isModalVisible}
+          video={video}
+          onBackdropClick={() => setIsModalVisible(false)}
+        />
+      )}
     </div>
   );
 };

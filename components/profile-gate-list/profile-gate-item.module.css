@@ -1,0 +1,47 @@
+.profile-item a {
+  text-decoration: none;
+  color: #fff;
+  cursor: pointer;
+  background-color: transparent;
+}
+
+.avatar-wrapper .profile-icon {
+  background-color: #333;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border: none;
+    border-radius: 4px;
+    box-sizing: border-box;
+    height: 10vw;
+    max-height: 200px;
+    max-width: 200px;
+    min-height: 84px;
+    min-width: 84px;
+    position: relative;
+    text-decoration: none;
+    width: 10vw;
+}
+
+.avatar-wrapper .profile-icon::after {
+  border: 0.3em solid transparent;
+  border-radius: 4px;
+  bottom: 0;
+  content: "";
+  display: block;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.profile-item span {
+  color: grey;
+  display: block;
+  font-size: 1.3vw;
+  line-height: 1.2em;
+  margin: 0.6em 0;
+  min-height: 1.8em;
+  overflow: hidden;
+  text-align: center;
+  text-overflow: ellipsis;
+}

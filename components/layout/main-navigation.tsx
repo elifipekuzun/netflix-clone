@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import Link from 'next/link';
 import styles from './main-navigation.module.css';
 import Image from 'next/image';
@@ -9,8 +9,10 @@ import { Submenu } from './submenu';
 import { Avatar } from '@mui/material';
 import classNames from 'classnames';
 import { signOut } from 'next-auth/react';
+import { UserContext } from '../../store/user-context';
 
 export const MainNavigation: React.FC = () => {
+  const { setUser, setSelectedProfile } = useContext(UserContext);
   const [pos, setPos] = useState<number>(0);
 
   const scrollHandler = () => {
@@ -20,6 +22,8 @@ export const MainNavigation: React.FC = () => {
 
   const logoutHandler = async () => {
     await signOut();
+    setSelectedProfile(undefined);
+    setUser(undefined);
     window.location.href = '/';
   };
 
@@ -60,7 +64,7 @@ export const MainNavigation: React.FC = () => {
           </div>
           <ul>
             <li>
-              <Link href={'/browse/genre/home'}>Home</Link>
+              <Link href={'/browse'}>Home</Link>
             </li>
             <li>
               <Link href={'/browse/genre/tv-series'}>Tv Series</Link>

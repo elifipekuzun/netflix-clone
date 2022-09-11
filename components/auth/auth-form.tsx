@@ -1,4 +1,4 @@
-import React, { FormEvent, useState } from 'react';
+import React, { FormEvent, useState, useContext } from 'react';
 import { LoginHeader } from './login-header';
 import styles from './auth-form.module.css';
 import { Input, Box, InputLabel } from '@mui/material';
@@ -8,8 +8,11 @@ import { ResponseData } from '../../pages/api/auth/signup';
 import { useRouter } from 'next/router';
 import { signIn } from 'next-auth/react';
 import { CustomBackdrop } from '../ui/backdrop';
+import { UserContext } from '../../store/user-context';
 
 export const AuthForm: React.FC = () => {
+  const { setUser } = useContext(UserContext);
+
   const [isLogin, setIsLogin] = useState<boolean>(true);
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
@@ -30,6 +33,18 @@ export const AuthForm: React.FC = () => {
         setIsLoading(false);
         return;
       }
+      const res = await fetch('/api/auth/user', {
+        method: 'POST',
+        body: JSON.stringify({ email }),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      const data = await res.json();
+      if (data.message === 'Success!') {
+        setUser(data.user);
+      }
+
       router.replace('/browse');
     } else {
       const res = await fetch('/api/auth/signup', {
@@ -45,8 +60,10 @@ export const AuthForm: React.FC = () => {
         setIsLoading(false);
         return;
       }
+      setIsLoading(false);
       router.replace('/browse');
     }
+
     setEmail('');
     setPassword('');
   };

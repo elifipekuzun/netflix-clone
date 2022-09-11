@@ -30,18 +30,15 @@ const handler = async (
       return;
     }
     const hashedPassword = await hashPassword(password);
-    const result = await client
-      .db()
-      .collection('users')
-      .insertOne({ email, password: hashedPassword });
+    const newUser = { email, password: hashedPassword, profiles: [] };
+
+    const result = await client.db().collection('users').insertOne(newUser);
 
     client.close();
-    res
-      .status(200)
-      .json({
-        message: 'Success!',
-        user: { email, _id: result.insertedId.toString() },
-      });
+    res.status(200).json({
+      message: 'Success!',
+      user: { email, _id: result.insertedId.toString() },
+    });
   }
 };
 

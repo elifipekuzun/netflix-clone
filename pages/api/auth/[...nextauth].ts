@@ -40,8 +40,7 @@ export default NextAuth({
         }
 
         client.close();
-        const user = { ...existingUser, _id: existingUser._id.toString() };
-        return { user };
+        return { email: existingUser.email };
       },
     }),
   ],

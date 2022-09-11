@@ -51,7 +51,7 @@ export const PreviewModal: React.FC<{
               </Typography>
               <div className={styles.icons}>
                 <div className={styles.icon}>
-                  <PlayButton title="Play" bgColor="white">
+                  <PlayButton onClick={() => {}} title="Play" bgColor="white">
                     <PlayArrowRounded sx={{ fontSize: 28 }} />
                   </PlayButton>
                   <button className={styles.button}>

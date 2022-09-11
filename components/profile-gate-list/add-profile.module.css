@@ -1,0 +1,103 @@
+.profile-actions-container {
+  position: relative;
+  text-align: left;
+}
+.profile-actions-container .h1 {
+  font-size: 4vw;
+  margin: 0;
+  font-weight: 400;
+  margin-block-start: 0.67em;
+  margin-block-end: 0.67em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+}
+.profile-actions-container h2 {
+  color: #666;
+  font-size: 1.3vw;    
+  display: block;
+  font-weight: 400;
+  margin-block-start: 0.83em;
+  margin-block-end: 0.83em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+
+}
+.profile-entry {
+  display: flex;
+  padding: 2em 0;
+  border-bottom: 1px solid #333;
+  border-top: 1px solid #333;
+}
+
+.profile-avatar {
+  margin-right: 1.5vw;
+  max-width: 180px;
+  min-width: 80px;
+  white-space: nowrap;
+  width: 8vw;
+}
+
+.profile-avatar img {
+  border-radius: 4px;
+  width: 100%;
+  transition-timing-function: cubic-bezier(.68,-.55,.265,1.55);
+  object-fit: contain;
+}
+
+.profile-add {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.profile-entry-input {
+  align-items: center;
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    vertical-align: middle;
+    line-height: normal;
+}
+
+.profile-entry input[type=text] {
+  background: #666;
+  border: 1px solid transparent;
+  box-sizing: border-box;
+  color: #fff;
+  font-size: 1.3vw;
+  height: 2em;
+  margin: 0 0.8em 0 0;
+  padding: 0.2em 0.6em;
+  text-indent: 0.1vw;
+  width: 18em;
+}
+
+.profile-button {
+  background-color: transparent;
+    border: 1px solid grey;
+    color: grey;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 1.2vw;
+    letter-spacing: 2px;
+    margin: 2em 0 1em;
+    padding: 0.5em 1.5em;
+    margin-right: 20px;
+}
+
+.profile-button:hover {
+  border: 1px solid #fff;
+  color: #fff;
+}
+
+.profile-button.preffered {
+  background: #fff;
+  border: 1px solid #fff;
+  color: #000;
+  font-weight: 700;
+}
+.profile-button.preffered:hover {
+  background-color: #c00;
+  color: #fff;
+  border: 1px solid #c00;
+
+}

@@ -2,11 +2,17 @@ import React, { PropsWithChildren } from 'react';
 import Button from '@mui/material/Button';
 
 export const PlayButton: React.FC<
-  PropsWithChildren<{ title: string; bgColor: string; className?: string }>
-> = ({ children, title, bgColor, className }) => {
+  PropsWithChildren<{
+    title: string;
+    bgColor: string;
+    className?: string;
+    onClick: () => void;
+  }>
+> = ({ children, title, bgColor, className, onClick }) => {
   return (
     <div className={className}>
       <Button
+        onClick={onClick}
         variant={'contained'}
         sx={{
           ':hover': { opacity: '0.9', background: bgColor },
