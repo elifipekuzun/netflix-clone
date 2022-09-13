@@ -14,6 +14,7 @@ export const ProfileGateHeader: React.FC<PropsWithChildren> = ({
             alt="Netflix logo"
             width={70}
             height={29}
+            priority
           />
         </div>
       </div>

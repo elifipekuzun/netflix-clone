@@ -1,6 +1,7 @@
 import type { NextPage, GetServerSideProps } from 'next';
 import { AuthForm } from '../components/auth/auth-form';
 import { getSession } from 'next-auth/react';
+import Head from 'next/head';
 
 const Home: NextPage<{ status: string }> = ({ status }) => {
   if (status !== 'unauthenticated') {
@@ -13,6 +14,9 @@ const Home: NextPage<{ status: string }> = ({ status }) => {
 
   return (
     <>
+      <Head>
+        <title>Netflix</title>
+      </Head>
       <AuthForm />
     </>
   );

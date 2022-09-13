@@ -46,6 +46,7 @@ export const MainNavigation: React.FC = () => {
               alt={'Netflix'}
               width={93}
               height={30}
+              priority
             />
           </a>
         </Link>

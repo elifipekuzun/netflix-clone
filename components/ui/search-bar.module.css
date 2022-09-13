@@ -4,7 +4,7 @@
   width:0px;
   align-items: center;
   margin-right: 20px;
-  transition: all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55 );
+  transition: all 0.5s ease-out;
 }
 
 .search-box.active{
@@ -25,7 +25,7 @@
   padding: 0 20px 0 30px;
   outline:none;
   opacity:0;
-  transition: all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55 );
+  transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55 );
 }
 
 

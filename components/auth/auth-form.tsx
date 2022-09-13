@@ -1,9 +1,6 @@
 import React, { FormEvent, useState, useContext } from 'react';
 import { LoginHeader } from './login-header';
 import styles from './auth-form.module.css';
-import { Input, Box, InputLabel } from '@mui/material';
-import FormControl from '@mui/material/FormControl';
-import { CustomFormHelperText } from '../ui/form-helper-text';
 import { ResponseData } from '../../pages/api/auth/signup';
 import { useRouter } from 'next/router';
 import { signIn } from 'next-auth/react';
@@ -17,11 +14,16 @@ export const AuthForm: React.FC = () => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [errorMessage, setErrorMessage] = useState<string>('');
 
   const router = useRouter();
 
   const submitHandler = async (event: FormEvent) => {
     event.preventDefault();
+    if (password.trim().length < 6) {
+      return setErrorMessage('Password should have be at least 6 characters.');
+    }
+
     setIsLoading(true);
     if (isLogin) {
       const result = await signIn('credentials', {
@@ -84,53 +86,57 @@ export const AuthForm: React.FC = () => {
             <div className={styles['login-form-wrapper']}>
               <div className={styles['login-form-main']}>
                 <h1>{isLogin ? 'Sign In' : 'Sign Up'}</h1>
-                <Box component={'form'} onSubmit={submitHandler}>
-                  <FormControl
-                    sx={{ width: '100%' }}
-                    className={styles['form-control']}
-                  >
-                    <InputLabel color="warning" htmlFor="email">
-                      Email Address
-                    </InputLabel>
-                    <Input
-                      required
-                      value={email}
-                      onChange={(event) => setEmail(event.target.value)}
-                      id="email"
-                      aria-describedby="helper-text-email"
-                      color="warning"
-                      type="email"
-                    />
-                    <CustomFormHelperText
-                      className={styles['helper-text']}
-                      id="helper-text-email"
-                      message=""
-                    />
-                  </FormControl>
-                  <FormControl
-                    sx={{ width: '100%' }}
-                    className={styles['form-control']}
-                  >
-                    <InputLabel color="warning" htmlFor="password">
-                      Password
-                    </InputLabel>
-                    <Input
-                      required
-                      value={password}
-                      onChange={(e) => setPassword(e.target.value)}
-                      id="password"
-                      aria-describedby="helper-text-password"
-                      color="warning"
-                      type="password"
-                    />
-                    <CustomFormHelperText
-                      className={styles['helper-text']}
-                      id="helper-text-password"
-                      message=""
-                    />
-                    <button>{isLogin ? 'Sign In' : 'Sign Up'}</button>
-                  </FormControl>
-                </Box>
+                <form onSubmit={submitHandler}>
+                  <div className={styles['login-input']}>
+                    <div className={styles['input-control']}>
+                      <label className={styles['input-id']}>
+                        <input
+                          type={'email'}
+                          name="email"
+                          required
+                          value={email}
+                          onChange={(e) => setEmail(e.target.value)}
+                        />
+                        <label
+                          htmlFor="email"
+                          className={styles['place-label']}
+                        >
+                          Email Address
+                        </label>
+                        <span className={styles.line}></span>
+                      </label>
+                    </div>
+                  </div>
+                  <div className={styles['login-input']}>
+                    <div className={styles['input-control']}>
+                      <label className={styles['input-id']}>
+                        <input
+                          name="password"
+                          type={'password'}
+                          required
+                          value={password}
+                          onChange={(e) => {
+                            setPassword(e.target.value);
+                            if (errorMessage.length) {
+                              e.target.value.length >= 6 && setErrorMessage('');
+                            }
+                          }}
+                        />
+                        <label
+                          htmlFor="password"
+                          className={styles['place-label']}
+                        >
+                          Password
+                        </label>
+                        <span className={styles.line}></span>
+                      </label>
+                    </div>
+                    <div className={styles.error}>{errorMessage}</div>
+                  </div>
+                  <button className={styles['login-button']}>
+                    {isLogin ? 'Sign In' : 'Sign up'}
+                  </button>
+                </form>
               </div>
               <div>
                 <div className={styles['login-form-switcher']}>

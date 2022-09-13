@@ -62,4 +62,15 @@
   text-align: center;
   text-overflow: ellipsis;
 }
+.profile-button {
+  background-color: transparent;
+  border: 1px solid grey;
+  color: grey;
+  cursor: pointer;
+  display: block;
+  font-size: 1.2vw;
+  text-decoration: none;
+  margin: 2em 0 1em;
+  padding: 0.5em 1.5em;
+}
 

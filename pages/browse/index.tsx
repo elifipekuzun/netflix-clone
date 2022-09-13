@@ -10,6 +10,8 @@ import { useSession } from 'next-auth/react';
 import { ProfileGateList } from '../../components/profile-gate-list/profile-gate-list';
 import { UserContext } from '../../store/user-context';
 import { User } from '../../types/User';
+import Head from 'next/head';
+import { useRouter } from 'next/router';
 
 const BrowsePage: NextPage<{ videos: Movie[] | undefined; user: User }> = ({
   videos,
@@ -20,6 +22,7 @@ const BrowsePage: NextPage<{ videos: Movie[] | undefined; user: User }> = ({
     setUser(user);
   }, []);
   const { status } = useSession();
+  const router = useRouter();
 
   if (status === 'loading') {
     return <h1 className="center">Loading...</h1>;
@@ -31,6 +34,9 @@ const BrowsePage: NextPage<{ videos: Movie[] | undefined; user: User }> = ({
 
   return (
     <>
+      <Head>
+        <title>Netflix-Browse</title>
+      </Head>
       {selectedProfile ? (
         <Layout>
           <BillboardRow video={videos![0]} />
@@ -39,7 +45,12 @@ const BrowsePage: NextPage<{ videos: Movie[] | undefined; user: User }> = ({
           {videos && <VideoSlider videos={videos} genre={'Dramas'} />}
         </Layout>
       ) : (
-        <ProfileGateList />
+        <ProfileGateList
+          title="Who's watching?"
+          buttonTitle="Manage Profiles"
+          addHref="manage-profiles"
+          user={user}
+        />
       )}
     </>
   );

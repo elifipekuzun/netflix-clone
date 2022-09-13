@@ -21,6 +21,9 @@
     text-decoration: none;
     width: 10vw;
 }
+.avatar-wrapper .profile-icon.edit-mode {
+  opacity: .5;
+}
 
 .avatar-wrapper .profile-icon::after {
   border: 0.3em solid transparent;
@@ -44,4 +47,25 @@
   overflow: hidden;
   text-align: center;
   text-overflow: ellipsis;
+}
+.svg-edit {
+  align-items: center;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+.svg-icon {
+  height: 3rem;
+  max-height: 70px;
+  max-width: 70px;
+  width: 3rem;
+  border: 1px solid transparent;
+  margin: 0 -1px;
+  overflow: visible;
+  transform: scale(1);
+  fill: #fff;
 }

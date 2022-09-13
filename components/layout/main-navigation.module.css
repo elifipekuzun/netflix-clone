@@ -67,6 +67,8 @@
 .header a {
   color: var(--color-grey-100);
   margin-left: 5px;
+  font-size: 10vm;
+  font-weight: 700;
 }
 
 .header a:hover,

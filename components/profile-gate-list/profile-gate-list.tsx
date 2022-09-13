@@ -1,33 +1,33 @@
-import React, { useContext, useState } from 'react';
+import React from 'react';
 import { ProfileGateItem } from './profile-gate-item';
 import styles from './profile-gate-list.module.css';
 import AddIcon from '@mui/icons-material/AddCircle';
-import { UserContext } from '../../store/user-context';
-import { AddProfile } from './add-profile';
+import { useRouter } from 'next/router';
 import { ProfileGateHeader } from './profile-gate-header';
+import { User } from '../../types/User';
 
-export const ProfileGateList: React.FC = () => {
-  const { user, setSelectedProfile } = useContext(UserContext);
-
-  const [isAdding, setIsAdding] = useState<boolean>(false);
+export const ProfileGateList: React.FC<{
+  title: string;
+  buttonTitle: string;
+  addHref: string;
+  style?: React.CSSProperties;
+  user: User;
+}> = ({ title, buttonTitle, addHref, style, user }) => {
+  const router = useRouter();
 
   return (
-    <ProfileGateHeader>
-      {isAdding ? (
-        <AddProfile onClickCancel={() => setIsAdding(false)} />
-      ) : (
+    <>
+      <ProfileGateHeader>
         <div className={styles['list-profiles']}>
-          <h1>Who is watching?</h1>
+          <h1>{title}</h1>
           <ul>
             {user?.profiles.map((item) => {
               return (
-                <li
-                  key={item.profileName}
-                  onClick={() => setSelectedProfile(item)}
-                >
+                <li key={item.profileName}>
                   <ProfileGateItem
                     avatar={item.avatarUrl}
                     name={item.profileName}
+                    editMode={addHref === '' ? true : false}
                   />
                 </li>
               );
@@ -36,11 +36,11 @@ export const ProfileGateList: React.FC = () => {
               <a>
                 <div
                   className={styles['add-profile']}
-                  onClick={() => setIsAdding(true)}
+                  onClick={() => router.push('/browse/add-profile')}
                 >
                   <AddIcon
                     sx={{
-                      fontSize: 80,
+                      fontSize: '2em',
                       fontStyle: 'normal',
                       fontVariant: 'normal',
                       fontWeight: '400',
@@ -54,7 +54,16 @@ export const ProfileGateList: React.FC = () => {
             </li>
           </ul>
         </div>
-      )}
-    </ProfileGateHeader>
+        <span>
+          <a
+            href={`/browse/${addHref}`}
+            className={styles['profile-button']}
+            style={style}
+          >
+            {buttonTitle}
+          </a>
+        </span>
+      </ProfileGateHeader>
+    </>
   );
 };
